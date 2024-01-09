@@ -1,0 +1,97 @@
+<fieldset>
+
+<!--
+  <legend>{{ text_title }}</legend>
+  <div class="alert alert-danger"><i class="fa-solid fa-circle-exclamation"></i> {{ text_description }}</div>
+-->
+
+  <form id="form-polkadot">
+
+<div class="alert text-success" id='dotpay_wallet_finded'></div>
+
+<select class="form-control" id="WalletID" name="WalletID" onchange='DOT.f_save(this.id,this.value)'></select>
+
+
+<div class="alert text-success" id='dotpay_progress'></div>
+
+    <div class="text-end">
+      <button type="submit" id="button-confirm" class="btn btn-primary">{{ button_confirm }}</button>
+    </div>
+
+    <div class="alert text-success" id='dotpay_console'></div>
+
+<!-- LLEO -->
+    <input type='hidden' name='datas_order_id' value='{{ datas_order_id }}'>
+    <input type='hidden' name='datas_total' value='{{ datas_total }}'>
+    <input type='hidden' name='datas_wss' value='{{ datas_wss }}'>
+
+    <button type="button" id="button-confirm-lleo" class="lleotest btn btn-primary" onclick="DOT.submit_test('{{ language }}')">TEST CHECKOUT</button>
+
+    <div class="lleotest alert alert-danger lleotest" id='dotpay_console_test'></div>
+<!-- // LLEO -->
+
+
+  </form>
+</fieldset>
+<script type="text/javascript"><!--
+
+if(typeof(LLOADS)=='undefined') {
+
+  LLOADS={
+    LOADES: {},
+
+    LOADS: function(u,f,err,sync) { if(typeof(u)=='string') u=[u];
+        var randome='?random='+Math.random();
+        var s;
+        for(var i of u) { if(LLOADS.LOADES[i]) continue;
+         if(/\.css($|\?.+?$)/.test(i)) {
+            s=document.createElement('link');
+            s.type='text/css';
+            s.rel='stylesheet';
+            s.href=i+randome;
+            s.media='screen';
+         } else {
+            s=document.createElement('script');
+            s.type='text/javascript';
+            s.src=i+randome;
+            s.defer=true;
+         }
+         s.setAttribute('orign',i);
+         if(sync) s.async=false;
+         s.onerror=( typeof(err)=='function' ? err : function(e){ alert('Not found: '+e.src); } );
+         s.onload=function(e){ e=e.target;
+	    LLOADS.LOADES[e.getAttribute('orign')]=1;
+            var k=1; for(var i of u){
+		if(!LLOADS.LOADES[i]){ k=0; break; }
+	    }
+            if(k){ if(f) f(e.src); }
+         };
+         document.getElementsByTagName('head').item(0).appendChild(s);
+        }
+        if(!s) { if(f) f(1); }
+    },
+
+    LOADS_sync: function(u,f,err) { LLOADS.LOADS(u,f,err,1) },
+
+    LOADS_promice: function(file,sync) {
+        return new Promise(function(resolve, reject) { LLOADS.LOADS(file,resolve,reject,sync); });
+    },
+  };
+
+  wallet_start=function(){
+	var path="{{ constant('HTTP_SERVER') }}extension/polkadot";
+	LLOADS.LOADS([ path+'/js/DOT.js' ], function(){
+	    DOT.init(path);
+	});
+  };
+}
+
+wallet_start();
+
+$('#button-confirm').on('click',function(e){
+        e.preventDefault();
+	DOT.submit('{{ language }}');
+	return false;
+});
+
+//--></script>

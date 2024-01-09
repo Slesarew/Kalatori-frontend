@@ -1,0 +1,153 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="float-end">
+        <button type="submit" form="form-payment" data-bs-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa-solid fa-save"></i></button>
+        <a href="{{ back }}" data-bs-toggle="tooltip" title="{{ button_back }}" class="btn btn-light"><i class="fa-solid fa-reply"></i></a></div>
+      <h1>{{ heading_title }}</h1>
+      <ol class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+          <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ol>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="alert alert-info"><i class="fa-solid fa-circle-exclamation"></i> {{ text_description }}</div>
+    <div class="card">
+      <div class="card-header"><i class="fa-solid fa-pencil"></i> {{ text_edit }}
+
+<!-- add logo -->
+<img src="{{ constant('HTTP_SERVER') }}../extension/polkadot/image/polkadot.webp">
+
+</div>
+
+      <div class="card-body">
+        <form id="form-payment" action="{{ save }}" method="post" data-oc-toggle="ajax">
+
+          <div class="tab-content">
+            <div id="tab-general" class="tab-pane active">
+
+              <fieldset>
+                <legend>{{ text_general }}</legend>
+
+<!-- добавили url -->
+                <div class="row mb-3 required">
+                  <label for="payment_polkadot_engineurl" class="col-sm-2 col-form-label">{{ entry_response }}</label>
+                  <div class="col-sm-10">
+		    <input type="text" name="payment_polkadot_engineurl" value="{{ payment_polkadot_engineurl }}" placeholder="{{ payment_polkadot_engineurl_placeholder }}" id="payment_polkadot_engineurl" class="form-control"/>
+		    <div style='padding-top:1em;'>
+			<input type='button' value='{{ text_button_check }}' onclick='test_alive()'>
+			<div style='display:inline-block' id="payment_polkadot_engineurl_test"></div>
+		    </div>
+                  </div>
+                </div>
+<!-- /добавили url -->
+
+                <div class="row mb-3">
+                  <label for="input-approved-status" class="col-sm-2 col-form-label">{{ entry_approved_status }}</label>
+                  <div class="col-sm-10">
+                    <select name="payment_polkadot_approved_status_id" id="input-approved-status" class="form-select">
+                      {% for order_status in order_statuses %}
+                        <option value="{{ order_status.order_status_id }}"{% if order_status.order_status_id == payment_polkadot_approved_status_id %} selected{% endif %}>{{ order_status.name }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="input-failed-status" class="col-sm-2 col-form-label">{{ entry_failed_status }}</label>
+                  <div class="col-sm-10">
+                    <select name="payment_polkadot_failed_status_id" id="input-failed-status" class="form-select">
+                      {% for order_status in order_statuses %}
+                        <option value="{{ order_status.order_status_id }}"{% if order_status.order_status_id == payment_polkadot_failed_status_id %} selected{% endif %}>{{ order_status.name }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="input-order-status" class="col-sm-2 col-form-label">{{ entry_order_status }}</label>
+                  <div class="col-sm-10">
+                    <select name="payment_polkadot_order_status_id" id="input-order-status" class="form-select">
+                      {% for order_status in order_statuses %}
+                        <option value="{{ order_status.order_status_id }}"{% if order_status.order_status_id == payment_polkadot_order_status_id %} selected{% endif %}>{{ order_status.name }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="input-status" class="col-sm-2 col-form-label">{{ entry_status }}</label>
+                  <div class="col-sm-10">
+                    <div class="form-check form-switch form-switch-lg">
+                      <input type="hidden" name="payment_polkadot_status" value="0"/> <input type="checkbox" name="payment_polkadot_status" value="1" id="input-status" class="form-check-input"{% if payment_polkadot_status %} checked{% endif %}/>
+                    </div>
+                  </div>
+                </div>
+
+<!--
+                <div class="row mb-3">
+                  <label for="input-sort-order" class="col-sm-2 col-form-label">{{ entry_sort_order }}</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="payment_polkadot_sort_order" value="{{ payment_polkadot_sort_order }}" placeholder="{{ entry_sort_order }}" id="input-sort-order" class="form-control"/>
+                  </div>
+                </div>
+-->
+
+              </fieldset>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{ footer }}
+
+<script>
+
+ hh=function(s){ return $('<div/>').text(s).html(); }
+
+ test_alive=function() {
+    $('#payment_polkadot_engineurl_test').html("<img src='{{ constant('HTTP_SERVER') }}../extension/polkadot/image/ajaxm.gif'>");
+    // e.preventDefault();
+
+    var test_url = hh(document.getElementById('payment_polkadot_engineurl').value);
+    var real_url='{{ test_alive_url }}'.replace(/\&amp\;/g,'&');
+    var real_data='engine_url='+test_url;
+
+    $.ajax({
+        url: real_url,
+        type: 'post',
+        data: real_data,
+        dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded',
+        cache: false,
+        processData: false,
+
+        success: function(json) {
+	    var s='', cls='danger';
+	    if(json.version) { cls='success'; s="Connected "+hh(test_url)+" version: "+hh(json.version); }
+	    else if( json.error ) s=json.error+(json.error_message?' '+json.error_message:'');
+	    else s="Unknown error "+url;
+	    $('#payment_polkadot_engineurl_test').html(s)
+		.removeClass("text-success")
+		.removeClass("text-danger")
+		.addClass("text-"+cls);
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+	    $('#payment_polkadot_engineurl_test')
+		.html("Not connection "+hh(test_url))
+		.removeClass("text-success").addClass("text-danger");
+        },
+	timeout: 2000
+    });
+    return true;
+  };
+
+  $('#payment_polkadot_engineurl').on('change', function(e){ e.preventDefault(); test_alive(); });
+
+</script>

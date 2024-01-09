@@ -1,0 +1,7 @@
+2c2
+< // namespace Opencart\Catalog\Model\Extension\OcPaymentExample\Payment;
+---
+> 
+8,9d7
+< 
+< 		// error_log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
