@@ -1,27 +1,20 @@
 # Kalatori-frontend
-Collection of frontends for Kalatori Substrate-based web shop
+Collection of frontends for Kalatori Substrate-based web shop. Example demo deployments should be running (normally, this is low-budget demo, not some high availability setup) for all models, see links below. The demo deployments use the newer backend version and thus have more features but are also not stable. To place an "order", use Alice's account in any Substrate-compatible wallet:
 
-Рабочие сайты и модельки (ссылки ниже) будут работать и даже принимать платежи. Модельки - от Алисы. Ну, если на тестовом сервере не подвисла тестовая нода. Чтобы протестировать OpenCart3 и PrestaShop, сделайте себе аккаунт Алисы и платите с него через веб-кошельки:
-bottom drive obey lake curtain smoke basket hold race lonely fit walk//Alice
+`bottom drive obey lake curtain smoke basket hold race lonely fit walk//Alice`
 
 # OpenCart v4
 
-Ебанутая версия OpenCart4 - эти чурики перешли на новую несовместимую версию и похерили все плагины, что для них писал весь мир десять лет. По сути ничего особо не изменилось, только стало хуже, более громоздко и поменялись все пути иимена папок. Самая первая версия плагина была сделана для OpenCart4 (мы-то подумали, что надо брать самую последнюю версию и делать для неё, потому что она лучшая). Плагин старый, но работает в боевом режиме в нашем магазине с самой первой версией бэкенда:
-
-https://kampe.la
+The first original attempt to create DOT store. This is currently used in production in https://kampe.la webstore, so no special demo. Choosing this as prototyping tool was a mistake in hindsight, as most of community plugins and other goodies were developed for not forward-compatible (intentionally it seems) OpenCart3.
 
 # OpenCart v3
 
-Более старая и более умная и опрятная версия магазина. Работает с доработанной мною 2 версией бэкенда. Плагин этот самый новый, по его подобию будут поправлены вскоре все прочие. Там и идентиконы и прочие радости:
+Implementation of the same plugin as in OpenCart4, but better and has more features.
 
-https://opencart3.zymologia.fi
+[demo deployment](https://opencart3.zymologia.fi)
 
 # PrestaShop
 
-Самый миленький магазин конечно, очень приятный. И плагин для него получился тоже нарядный и быстрый. Работает также со 2 версией бэкенда. Идентиконы имеются:
+Minimalistic and neat store front.
 
-https://dev-prestashop.zymologia.fi
-
-# Плагины для остальных магазинов
-
-в разработке
+[demo deployment](https://dev-prestashop.zymologia.fi)
