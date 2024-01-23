@@ -1,0 +1,24 @@
+admin-controller-polkadot.php	| polkadot/admin/controller/payment/polkadot.php
+admin-language-polkadot.php	| polkadot/admin/language/en-gb/payment/polkadot.php
+admin-model-polkadot.php	| polkadot/admin/model/payment/polkadot.php
+admin-template.twig		| polkadot/admin/view/template/payment/polkadot.twig
+
+catalog-controller.php		| polkadot/catalog/controller/payment/polkadot.php
+catalog-language.php		| polkadot/catalog/language/en-gb/payment/polkadot.php
+catalog-model.php		| polkadot/catalog/model/payment/polkadot.php
+catalog-template.twig		| polkadot/catalog/view/template/payment/polkadot.twig
+
+DOT.js				| polkadot/js/*
+
+other/image/ajaxm.gif		| polkadot/image/*
+other/image/Alzymologist_.png	| polkadot/image/*
+other/image/polkadot.webp	| polkadot/image/*
+
+other/js/bundle-polkadot-api.js			| polkadot/js/*
+other/js/bundle-polkadot-extension-dapp.js	| polkadot/js/*
+other/js/bundle-polkadot-keyring.js		| polkadot/js/*
+other/js/bundle-polkadot-types.js		| polkadot/js/*
+other/js/bundle-polkadot-util-crypto.js		| polkadot/js/*
+other/js/bundle-polkadot-util.js		| polkadot/js/*
+
+other/install.json		| polkadot/install.json

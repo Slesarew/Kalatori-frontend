@@ -1,0 +1,50 @@
+3d2
+< // namespace Opencart\Catalog\Controller\Extension\OcPaymentExample\Payment;
+9d7
+< 
+11,13d8
+< 
+< //	        $data['payment_polkadot_wssurl'] = $this->config->get('payment_polkadot_wssurl');
+< 
+17,33c12,16
+< 		//	$data['months'] = [];
+< 		//	foreach (range(1, 12) as $month) {
+< 		//		$data['months'][] = date('m', mktime(0, 0, 0, $month, 1));
+< 		//	}
+< 		//	$data['years'] = [];
+< 		//	foreach (range(date('Y'), date('Y', strtotime('+10 year'))) as $year) {
+< 		//		$data['years'][] = $year;
+< 		//	}
+< 
+< 	$data['datas_order_id'] = 1*($this->session->data['order_id']);
+< 
+< 	$this->load->model('checkout/order');
+< 	$order_info = $this->model_checkout_order->getOrder($data['datas_order_id']);
+< 	$data['datas_total']=($order_info? 1*$order_info["total"] : 'error');
+< 
+< 	$data['datas_wss']= $this->config->get('payment_polkadot_engineurl');
+< 
+---
+> 			$data['datas_order_id'] = 1*($this->session->data['order_id']);
+> 			$this->load->model('checkout/order');
+> 			$order_info = $this->model_checkout_order->getOrder($data['datas_order_id']);
+> 			$data['datas_total']=($order_info? 1*$order_info["total"] : 'error');
+> 			$data['datas_wss']= $this->config->get('payment_polkadot_engineurl');
+59d41
+< 
+61d42
+< 
+63,64d43
+< 
+< 
+68d46
+< 
+74,81d51
+< 
+< //		$polkadot_log = DIR_LOGS . "polkadot_log.log";
+< //		$json['error'] = $log;
+< //		$this->response->setOutput(json_encode($json));
+< //		return;
+< 
+< 
+< 

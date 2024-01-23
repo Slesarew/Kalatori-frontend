@@ -1,0 +1,57 @@
+###
+### какие файлы куда копируем
+###
+
+admin-controller-polkadot.php	| upload/admin/controller/extension/payment/polkadot.php
+admin-language-polkadot.php	| upload/admin/language/en-gb/extension/payment/polkadot.php
+admin-model-polkadot.php	| upload/admin/model/extension/payment/polkadot.php
+admin-template.twig		| upload/admin/view/template/extension/payment/polkadot.twig
+
+catalog-controller.php		| upload/catalog/controller/extension/payment/polkadot.php
+catalog-language.php		| upload/catalog/language/en-gb/extension/payment/polkadot.php
+catalog-model.php		| upload/catalog/model/extension/payment/polkadot.php
+catalog-template.twig		| upload/catalog/view/theme/default/template/extension/payment/polkadot.twig
+
+other/image/ajaxm.gif		| upload/catalog/view/theme/default/image/polkadot/*
+other/image/Alzymologist_.png	| upload/catalog/view/theme/default/image/polkadot/*
+other/image/polkadot.webp	| upload/catalog/view/theme/default/image/polkadot/*
+
+DOT.js						| upload/catalog/view/javascript/polkadot/*
+other/js/bundle-polkadot-api.js			| upload/catalog/view/javascript/polkadot/*
+other/js/bundle-polkadot-extension-dapp.js	| upload/catalog/view/javascript/polkadot/*
+other/js/bundle-polkadot-keyring.js		| upload/catalog/view/javascript/polkadot/*
+other/js/bundle-polkadot-types.js		| upload/catalog/view/javascript/polkadot/*
+other/js/bundle-polkadot-util-crypto.js		| upload/catalog/view/javascript/polkadot/*
+other/js/bundle-polkadot-util.js		| upload/catalog/view/javascript/polkadot/*
+
+#other/install.json		| polkadot/install.json
+
+###
+### какие строки в файлах на какие другие строки заменяем
+###
+
+@ namespace Opencart\Admin\Model\Extension\Polkadot\Payment; |
+@ class Polkadot extends \Opencart\System\Engine\Controller { | class ControllerExtensionPaymentPolkadot extends Controller {
+
+@ namespace Opencart\Admin\Controller\Extension\Polkadot\Payment; |
+@ class Polkadot extends \Opencart\System\Engine\Model { | class ModelExtensionPaymentPolkadot extends Model {
+
+@ namespace Opencart\Catalog\Controller\Extension\Polkadot\Payment; |
+@ namespace Opencart\Catalog\Model\Extension\Polkadot\Payment; |
+
+@ extension_polkadot_payment_polkadot | extension_payment_polkadot
+@ extension/polkadot/payment/polkadot | extension/payment/polkadot
+
+@ ../extension/polkadot/image/ | ../catalog/view/theme/default/image/polkadot/
+
+@ /payment/polkadot.confirm	| /payment/polkadot/confirm
+@ /payment/polkadot.save	| /payment/polkadot/save
+@ /payment/polkadot.test_alive	| /payment/polkadot/test_alive
+
+
+
+
+
+
+#// class ControllerExtensionPaymentPolkadot extends Model {
+#class ModelExtensionPaymentPolkadot extends Model {
